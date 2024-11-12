@@ -1,7 +1,9 @@
-﻿1. Click button, copy the XML file to current directory
-2. Parse XML file, create a tree of XML file
-3. Show XML tree on GUI
-4. Delete current XML File - clear the XML tree
+﻿1. Click button, copy the XML file to current directory ? Need or not?
+2. Parse XML file, create a tree of XML file (done)
+3. Show XML tree on GUI (done)
+4. Delete current XML File - clear the XML tree (done)
+
+5. Add input validation and unit test?
 
 
 5. Open stored XML tree?
@@ -11,3 +13,43 @@ https://www.youtube.com/watch?v=3OEBp3tTt9E
 *. XNode?
 
 *XML Database management?
+
+
+------------------------------------------------------------------
+Read file XML (done)
+Tree construction - doing
+
+cur_depth = 0
+new_depth = 0
+
+loop through each line (should be in a list)
+	new_depth = the depth resulted from each line
+	
+	if new_depth - cur_depth == 1:
+		cur_node.children_list.add(new_node)
+		cur_node = new_node
+
+	if new_depth - cur_depth == 0:
+		cur_node = cur_node.parrent
+		cur_node.children_list.add(new_node)
+		cur_node = new_node
+
+	// Comment out
+	if new_depth - cur_depth == -1:
+		loop two time:
+			cur_node = cur_node.parrent
+
+		cur_node.children_list.add(new_node)
+		cur_node = new_node
+	// Comment out
+
+	if new_depth - cur_depth < 0:
+		n = abs(cur_depth - new_depth):
+		
+		for (int i = 0; i < n+1; i++) {
+			cur_node = cur_node.parrent;
+		}
+		
+		cur_node.children_list.add(new_node)
+		cur_node = new_node
+
