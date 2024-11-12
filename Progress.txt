@@ -1,0 +1,13 @@
+﻿1. Click button, copy the XML file to current directory
+2. Parse XML file, create a tree of XML file
+3. Show XML tree on GUI
+4. Delete current XML File - clear the XML tree
+
+
+5. Open stored XML tree?
+
+https://www.youtube.com/watch?v=3OEBp3tTt9E
+
+*. XNode?
+
+*XML Database management?
