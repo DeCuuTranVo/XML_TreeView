@@ -1,11 +1,16 @@
-﻿using XML_TreeView.Models;
+﻿using System.Windows.Forms.Design;
+using XML_TreeView.Models;
+using XML_TreeView.Services;
 
 namespace XML_TreeView
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        private readonly IXmlTreeViewHandler _xmlTreeViewHandler;
+
+        public MainForm(IXmlTreeViewHandler xmlTreeViewHandler)
         {
+            _xmlTreeViewHandler = xmlTreeViewHandler;
             InitializeComponent();
         }
 
@@ -13,19 +18,26 @@ namespace XML_TreeView
         {
             OpenFileDialog openFile = new OpenFileDialog();
 
-            openFile.Title = "Chọn File XML";
+            openFile.Title = "Choose XML Files";
 
-            openFile.Filter = "File xml| *.xml; |All File|*.*";
+            openFile.Filter = "File xml| *.xml; |All Files|*.*";
 
             if (openFile.ShowDialog() == DialogResult.OK)
             {
+                // Check if file is not null
+
+                // Check if file is of xml type
+
+                // Try catch and event handler
+
+
                 ClearTreeView();
 
                 //MessageBox.Show(openFile.SafeFileName);
                 //MessageBox.Show(openFile.FileName);
 
-                List<XNode> nodeList = XmlTreeViewConverter.ExtractNodeList(openFile.FileName);
-                XNode rootNode = XmlTreeViewConverter.ConstructTree(nodeList);
+                List<XNode> nodeList = _xmlTreeViewHandler.ExtractNodeList(openFile.FileName);
+                XNode rootNode = _xmlTreeViewHandler.ConstructTree(nodeList);
 
                 LoadTreeView(rootNode);
             }
@@ -65,10 +77,6 @@ namespace XML_TreeView
             //treeView1.Nodes.Add(root2);
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 
 }

@@ -3,7 +3,12 @@
 3. Show XML tree on GUI (done)
 4. Delete current XML File - clear the XML tree (done)
 
-5. Add input validation and unit test?
+5. TreeSort?
+5. Add XML_TreeViewHandler as a service?
+6. Add input validation and unit test? 
+7. Add a tree that contain the rootnode and some other statistics
+8. Add comments?
+9. Complexity of algorithms?
 
 
 5. Open stored XML tree?
@@ -13,6 +18,7 @@ https://www.youtube.com/watch?v=3OEBp3tTt9E
 *. XNode?
 
 *XML Database management?
+-------------------------------------------------------
 
 
 ------------------------------------------------------------------
@@ -53,3 +59,4 @@ loop through each line (should be in a list)
 		cur_node.children_list.add(new_node)
 		cur_node = new_node
 
+--------------------------------------------------------------------------------------------------------

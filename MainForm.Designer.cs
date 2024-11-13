@@ -87,7 +87,7 @@
             label2.Size = new Size(52, 15);
             label2.TabIndex = 4;
             label2.Text = "File Path";
-            label2.Click += label2_Click;
+
             // 
             // label3
             // 

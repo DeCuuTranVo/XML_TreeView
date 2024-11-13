@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using System.Xml;
 using XML_TreeView.Models;
 
-namespace XML_TreeView
+namespace XML_TreeView.Services
 {
-    public static class XmlTreeViewConverter
+    public class XmlTreeViewHandler : IXmlTreeViewHandler
     {
         // Extract XNode list from XML file
-        public static List<XNode> ExtractNodeList(string pXmlPath)
+        public List<XNode> ExtractNodeList(string pXmlPath)
         {
             List<XNode> nodeList = new List<XNode>();
 
@@ -39,12 +39,12 @@ namespace XML_TreeView
         }
 
         // Construct A Tree from the XNode list 
-        public static XNode ConstructTree(List<XNode> pNodeList)
+        public XNode ConstructTree(List<XNode> pNodeList)
         {
             XNode curNode = null;
             XNode newNode = null;
 
-            XNode rootNode = new XNode() {Depth = -1, Text="Root Node" };
+            XNode rootNode = new XNode() { Depth = -1, Text = "Root Node" };
             curNode = rootNode;
 
             foreach (XNode nodeItem in pNodeList)
@@ -79,6 +79,6 @@ namespace XML_TreeView
         }
 
         // Print a tree
+        // Reverse a tree
     }
-
 }
