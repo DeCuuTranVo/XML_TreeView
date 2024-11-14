@@ -2,12 +2,15 @@
 2. Parse XML file, create a tree of XML file (done)
 3. Show XML tree on GUI (done)
 4. Delete current XML File - clear the XML tree (done)
+5. Add XML_TreeViewHandler as a service (done)
+6. Add a tree that contain the rootnode and some other methods (done)
+7. 
 
-5. TreeSort?
-5. Add XML_TreeViewHandler as a service?
+
+5. TreeSort? First turn: Good; Then? Problem!
 6. Add input validation and unit test? 
-7. Add a tree that contain the rootnode and some other statistics
-8. Add comments?
+
+8. Add comments? & Documentations?
 9. Complexity of algorithms?
 
 
@@ -19,7 +22,12 @@ https://www.youtube.com/watch?v=3OEBp3tTt9E
 
 *XML Database management?
 -------------------------------------------------------
-
+Features:
+- Dependency injection
+- Upload files and clear TreeViews (need more exceptionn check)
+- Reverse (UI), Print Trees (in console)
+- Sorting node by test in alphabetical orders
+- Exception handling and unit test
 
 ------------------------------------------------------------------
 Read file XML (done)

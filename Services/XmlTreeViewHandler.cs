@@ -39,12 +39,13 @@ namespace XML_TreeView.Services
         }
 
         // Construct A Tree from the XNode list 
-        public XNode ConstructTree(List<XNode> pNodeList)
+        public XTree ConstructTree(List<XNode> pNodeList)
         {
             XNode curNode = null;
             XNode newNode = null;
 
             XNode rootNode = new XNode() { Depth = -1, Text = "Root Node" };
+            XTree xTree = new XTree(rootNode);
             curNode = rootNode;
 
             foreach (XNode nodeItem in pNodeList)
@@ -70,15 +71,20 @@ namespace XML_TreeView.Services
                 }
                 else
                 {
-                    throw new Exception("The child node should never be deep than two level compared to the parent node.");
+                    throw new Exception("The child node should never be deeper than two levels compared to the parent node.");
                 }
             }
 
-            return rootNode;
+            return xTree;
 
         }
 
-        // Print a tree
-        // Reverse a tree
+        // Write a function to clone tree
+        public XTree CloneTree(XTree xTree)
+        {
+            XNode newNode = (XNode) xTree.RootNode.Clone();
+            XTree newTree = new XTree(newNode);
+            return newTree;
+        }
     }
 }

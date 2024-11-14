@@ -11,6 +11,8 @@ namespace XML_TreeView.Services
     {
         public List<XNode> ExtractNodeList(string pXmlPath);
 
-        public XNode ConstructTree(List<XNode> pNodeList);
+        public XTree ConstructTree(List<XNode> pNodeList);
+
+        public XTree CloneTree(XTree xTree);
     }
 }
