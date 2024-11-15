@@ -4,17 +4,9 @@
 4. Delete current XML File - clear the XML tree (done)
 5. Add XML_TreeViewHandler as a service (done)
 6. Add a tree that contain the rootnode and some other methods (done)
-7. 
-
-
-5. TreeSort? First turn: Good; Then? Problem!
-6. Add input validation and unit test? 
-
-8. Add comments? & Documentations?
-9. Complexity of algorithms?
-
-
-5. Open stored XML tree?
+7. TreeSort and Reverse (done)
+8. Add input validation (done)
+9. Add comments
 
 https://www.youtube.com/watch?v=3OEBp3tTt9E
 

@@ -11,9 +11,14 @@ namespace XML_TreeView.Models
 {
     public class XTree
     {
-        public XNode RootNode { get; set; } = new XNode() { Depth = -1, Text = "Root Node" };
+        public XNode RootNode { get; } = new XNode() { Depth = -1, Text = "Root Node" };
 
         public XTree(XNode pRootNode) {
+            if (pRootNode is null)
+            {
+                throw new ArgumentNullException("The argument to this constructor can not be null.");
+            }
+
             RootNode = pRootNode;
         }
 
@@ -25,9 +30,7 @@ namespace XML_TreeView.Models
         // Reverse Tree
         public void Reverse()
         {
-            //Console.WriteLine("Start Reversing Tree");
-            //RootNode = ReverseSubTree(RootNode);
-
+            // Reverse sub-trees
             foreach (var item in RootNode.Nodes)
             {
                 ReverseSubTree((XNode)item);
@@ -36,6 +39,7 @@ namespace XML_TreeView.Models
 
         private XNode ReverseSubTree(XNode xNode)
         {
+            // Saftety checkes
             if (xNode is null)
             {
                 return null;
@@ -46,12 +50,13 @@ namespace XML_TreeView.Models
                 return xNode;
             }
 
+            // Recursively reverse internal contents of sub-trees
             foreach (var item in xNode.Nodes)
             {
                 ReverseSubTree((XNode)item);
             }
 
-            // swap the children
+            // Swap sub-trees
             List<XNode> subNodeList = new List<XNode>();
 
             foreach (var item in xNode.Nodes)
@@ -67,12 +72,14 @@ namespace XML_TreeView.Models
                 xNode.Nodes.Add(item);
             }
 
+            // Return sub-tree
             return xNode;
         }
 
-        // Sort Tree by Text field
+        // Sort XTree by Text field
         public void Sort(SortOrder sortOrder)
         {
+            // Sort sub-trees
             foreach (var item in RootNode.Nodes)
             {
                 SortSubTree((XNode)item, sortOrder);
@@ -81,6 +88,7 @@ namespace XML_TreeView.Models
 
         private XNode SortSubTree(XNode xNode, SortOrder sortOrder)
         {
+            // Leaf cases
             if (xNode is null)
             {
                 return null;
@@ -91,12 +99,13 @@ namespace XML_TreeView.Models
                 return xNode;
             }
 
+            // Recursively sort internal contents of sub-trees
             foreach (var item in xNode.Nodes)
             {
-                ReverseSubTree((XNode)item);
+                SortSubTree((XNode)item, sortOrder);
             }
 
-            // swap the children
+            // Sort sub-trees
             List<XNode> subNodeList = new List<XNode>();
 
             foreach (var item in xNode.Nodes)
@@ -120,10 +129,11 @@ namespace XML_TreeView.Models
                 xNode.Nodes.Add(item);
             }
 
+            // Return
             return xNode;
         }
 
-        // Print Tree
+        // Print XTree to Console
         public void Print()
         {         
             foreach (XNode item in RootNode.Nodes)
@@ -132,7 +142,7 @@ namespace XML_TreeView.Models
             }
         }
 
-        // Pre-order Traversal
+        // Recursively print the XNodes in pre-order traversal.
         private void PrintTree(XNode tree, String indent, bool last)
         {
             Console.WriteLine(indent + "+- " + tree.Text);

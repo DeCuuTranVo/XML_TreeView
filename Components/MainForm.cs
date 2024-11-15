@@ -23,6 +23,11 @@ namespace XML_TreeView.Components
 
         private void LoadTreeView(XTree pXTree)
         {
+            if (pXTree is null)
+            {
+                throw new ArgumentNullException("The argument xTree can not be null.");
+            }
+
             foreach (XNode item in pXTree.RootNode.Nodes)
             {
                 treeView1.Nodes.Add(item);
@@ -39,34 +44,46 @@ namespace XML_TreeView.Components
 
             if (openFile.ShowDialog() == DialogResult.OK)
             {
-                // Check if file is not null
+                // Check if the selected file path exists
+                if (!Path.Exists(openFile.FileName))
+                {
+                    MessageBox.Show("The selected file does not exist");
+                    return;
+                }
 
-                // Check if file is of xml type
+                // Check if the selected file is of .xml type
+                if (Path.GetExtension(openFile.SafeFileName).ToLower() != ".xml")
+                {
+                    MessageBox.Show("The selected file is not a .xml file");
+                    return;
+                }
 
-                // Try catch and event handler
+                try
+                {
+                    // Clear TreeView
+                    ClearTreeView();
 
+                    // Update Textboxes
+                    fileNameTextBox.Text = openFile.SafeFileName;
+                    filePathTextBox.Text = openFile.FileName;
 
-                ClearTreeView();
+                    // Constructs XTree and Clone it
+                    List<XNode> nodeList = _xmlTreeViewHandler.ExtractNodeList(openFile.FileName);
+                    _xTree = _xmlTreeViewHandler.ConstructTree(nodeList);
+                    _initTree = _xmlTreeViewHandler.CloneTree(_xTree);
 
-                fileNameTextBox.Text = openFile.SafeFileName;
-                filePathTextBox.Text = openFile.FileName;
-
-                List<XNode> nodeList = _xmlTreeViewHandler.ExtractNodeList(openFile.FileName);
-                _xTree = _xmlTreeViewHandler.ConstructTree(nodeList);
-                _initTree = _xmlTreeViewHandler.CloneTree(_xTree);
-
-                //_xTree.Reverse();
-                LoadTreeView(_xTree);
-
-                //xTree.Print();             
+                    // Update TreeView
+                    LoadTreeView(_xTree);
+                }
+                catch
+                {
+                    MessageBox.Show("Failed to upload and process .xml file.");
+                }
             }
-
-            //MessageBox.Show("Upload New XML File");
         }
 
         private void clearTreeViewButton_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Delete Current XML File");
             ClearTreeView();
             fileNameTextBox.Text = string.Empty;
             filePathTextBox.Text = string.Empty;
